@@ -3,35 +3,29 @@
 #### 介绍
 这是一个Spingboot项目的部署，使用到nginx，docker，mysql，redis，rabbis，kubernetes，华为云，git，gitee，jenkins，node.js, nfs等技术栈
 
-#### 软件架构
-软件架构说明
+#### 搭建说明
+按顺序构建
 
+1、jumpserver 安装部署
 
-#### 安装教程
+2、harbor 安装部署
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+3、数据库部署
 
-#### 使用说明
+4、nacos部署
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+5、RocketMQ服务部署
 
-#### 参与贡献
+6、Maven部署
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+7、jenkins安装和部署
 
+8、 Node部署
 
-#### 特技
+9、CCE容器集群购买与部署
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+10、部署后端程序
+
+11、使用nginx部署前端页面
+
+12、发布服务
