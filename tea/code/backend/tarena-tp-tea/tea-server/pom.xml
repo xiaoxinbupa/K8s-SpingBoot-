@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.tarena.tp.tea</groupId>
+        <artifactId>tp-tea</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.tarena.tp.tea</groupId>
+    <artifactId>tea-server</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <modules>
+        <module>tea-server-main</module>
+        <module>tea-server-dao-api</module>
+        <module>tea-server-dao-impl</module>
+        <module>tea-server-domain</module>
+        <module>tea-server-protocol</module>
+        <module>tea-server-infrastructure</module>
+        <module>tea-web-adapter</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <dependency>
+                <groupId>com.tarena.tp.tea</groupId>
+                <artifactId>tea-server-domain</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.tarena.tp.tea</groupId>
+                <artifactId>tea-server-infrastructure</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.tarena.tp.tea</groupId>
+                <artifactId>tea-server-dao-api</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>com.tarena.tp.tea</groupId>
+                <artifactId>tea-server-dao-impl</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.tarena.tp.tea</groupId>
+                <artifactId>tea-server-protocol</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+
+        </dependencies>
+
+    </dependencyManagement>
+
+
+</project>

@@ -1,0 +1,37 @@
+{
+  "id": "3944182",
+  "name": "学茶网",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "8358883",
+      "name": "踩1",
+      "font_class": "cai",
+      "unicode": "e68f",
+      "unicode_decimal": 59023
+    },
+    {
+      "icon_id": "8358884",
+      "name": "踩2",
+      "font_class": "cai1",
+      "unicode": "e690",
+      "unicode_decimal": 59024
+    },
+    {
+      "icon_id": "11372651",
+      "name": "点赞",
+      "font_class": "dianzan",
+      "unicode": "e8ad",
+      "unicode_decimal": 59565
+    },
+    {
+      "icon_id": "11372758",
+      "name": "点赞",
+      "font_class": "dianzan1",
+      "unicode": "e8c3",
+      "unicode_decimal": 59587
+    }
+  ]
+}

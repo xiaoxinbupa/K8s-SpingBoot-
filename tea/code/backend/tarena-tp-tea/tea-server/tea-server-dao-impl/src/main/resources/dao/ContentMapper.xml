@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tarena.tp.tea.server.dao.ContentMapper">
+  <resultMap id="BaseResultMap" type="com.tarena.tp.tea.po.Content">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="category_id" jdbcType="INTEGER" property="categoryId" />
+    <result column="editor" jdbcType="VARCHAR" property="editor" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="brief" jdbcType="VARCHAR" property="brief" />
+    <result column="keywords" jdbcType="VARCHAR" property="keywords" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="cover_url" jdbcType="VARCHAR" property="coverUrl" />
+    <result column="media_type" jdbcType="INTEGER" property="mediaType" />
+    <result column="media_url" jdbcType="VARCHAR" property="mediaUrl" />
+    <result column="up" jdbcType="INTEGER" property="up" />
+    <result column="down" jdbcType="INTEGER" property="down" />
+    <result column="audit_status" jdbcType="BIT" property="auditStatus" />
+    <result column="click_times" jdbcType="INTEGER" property="clickTimes" />
+    <result column="comment_times" jdbcType="INTEGER" property="commentTimes" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
+    <result column="modified_user_id" jdbcType="BIGINT" property="modifiedUserId" />
+    <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+    <result column="modified_user_name" jdbcType="VARCHAR" property="modifiedUserName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, category_id, editor, title, brief, keywords, sort, cover_url, media_type, media_url,
+    up, down, audit_status, click_times, comment_times, ip, status, create_user_id, gmt_create, 
+    modified_user_id, gmt_modified, create_user_name, modified_user_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from content
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="getContentListByCategoryId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from content
+    where category_id = #{categoryId}
+    order by gmt_create desc
+  </select>
+  <select id="getMenuContentListByParam" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from content
+    where 1=1
+    <if test="categoryIds != null">
+      and category_id in (
+      <foreach collection="categoryIds" item="id" separator=",">
+        #{id}
+      </foreach>
+      )
+    </if>
+    and status = 1
+    order by gmt_create desc
+  </select>
+  <select id="getHotContentList" parameterType="com.tarena.tp.tea.server.query.HotContentQuery" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from content
+    where
+    1=1
+    <if test="categoryId != null">
+      and category_id = #{categoryId}
+    </if>
+    order by up desc limit #{pageNum}
+  </select>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.tarena.tp.tea.po.Content" useGeneratedKeys="true">
+    insert into content (category_id, editor, title,
+      brief, keywords, sort,
+      cover_url, media_type, media_url,
+      up, down, audit_status,
+      click_times, comment_times, ip,
+      status, create_user_id, gmt_create,
+      modified_user_id, gmt_modified, create_user_name,
+      modified_user_name)
+    values (#{categoryId,jdbcType=INTEGER}, #{editor,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR},
+      #{brief,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER},
+      #{coverUrl,jdbcType=VARCHAR}, #{mediaType,jdbcType=INTEGER}, #{mediaUrl,jdbcType=VARCHAR},
+      #{up,jdbcType=INTEGER}, #{down,jdbcType=INTEGER}, #{auditStatus,jdbcType=BIT},
+      #{clickTimes,jdbcType=INTEGER}, #{commentTimes,jdbcType=INTEGER}, #{ip,jdbcType=VARCHAR},
+      #{status,jdbcType=TINYINT}, #{createUserId,jdbcType=BIGINT}, #{gmtCreate,jdbcType=BIGINT},
+      #{modifiedUserId,jdbcType=BIGINT}, #{gmtModified,jdbcType=BIGINT}, #{createUserName,jdbcType=VARCHAR},
+      #{modifiedUserName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.tarena.tp.tea.po.Content" useGeneratedKeys="true">
+    insert into content
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="categoryId != null">
+        category_id,
+      </if>
+      <if test="editor != null">
+        editor,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="brief != null">
+        brief,
+      </if>
+      <if test="keywords != null">
+        keywords,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="coverUrl != null">
+        cover_url,
+      </if>
+      <if test="mediaType != null">
+        media_type,
+      </if>
+      <if test="mediaUrl != null">
+        media_url,
+      </if>
+      <if test="up != null">
+        up,
+      </if>
+      <if test="down != null">
+        down,
+      </if>
+      <if test="auditStatus != null">
+        audit_status,
+      </if>
+      <if test="clickTimes != null">
+        click_times,
+      </if>
+      <if test="commentTimes != null">
+        comment_times,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="modifiedUserId != null">
+        modified_user_id,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="createUserName != null">
+        create_user_name,
+      </if>
+      <if test="modifiedUserName != null">
+        modified_user_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="editor != null">
+        #{editor,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="brief != null">
+        #{brief,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null">
+        #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="coverUrl != null">
+        #{coverUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="mediaType != null">
+        #{mediaType,jdbcType=INTEGER},
+      </if>
+      <if test="mediaUrl != null">
+        #{mediaUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="up != null">
+        #{up,jdbcType=INTEGER},
+      </if>
+      <if test="down != null">
+        #{down,jdbcType=INTEGER},
+      </if>
+      <if test="auditStatus != null">
+        #{auditStatus,jdbcType=BIT},
+      </if>
+      <if test="clickTimes != null">
+        #{clickTimes,jdbcType=INTEGER},
+      </if>
+      <if test="commentTimes != null">
+        #{commentTimes,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=BIGINT},
+      </if>
+      <if test="modifiedUserId != null">
+        #{modifiedUserId,jdbcType=BIGINT},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null">
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedUserName != null">
+        #{modifiedUserName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tarena.tp.tea.po.Content">
+    update content
+    <set>
+      <if test="categoryId != null">
+        category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="editor != null">
+        editor = #{editor,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="brief != null">
+        brief = #{brief,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null">
+        keywords = #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="coverUrl != null">
+        cover_url = #{coverUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="mediaType != null">
+        media_type = #{mediaType,jdbcType=INTEGER},
+      </if>
+      <if test="mediaUrl != null">
+        media_url = #{mediaUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="up != null">
+        up = #{up,jdbcType=INTEGER},
+      </if>
+      <if test="down != null">
+        down = #{down,jdbcType=INTEGER},
+      </if>
+      <if test="auditStatus != null">
+        audit_status = #{auditStatus,jdbcType=BIT},
+      </if>
+      <if test="clickTimes != null">
+        click_times = #{clickTimes,jdbcType=INTEGER},
+      </if>
+      <if test="commentTimes != null">
+        comment_times = #{commentTimes,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=BIGINT},
+      </if>
+      <if test="modifiedUserId != null">
+        modified_user_id = #{modifiedUserId,jdbcType=BIGINT},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null">
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedUserName != null">
+        modified_user_name = #{modifiedUserName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tarena.tp.tea.po.Content">
+    update content
+    set category_id = #{categoryId,jdbcType=INTEGER},
+      editor = #{editor,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      brief = #{brief,jdbcType=VARCHAR},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      cover_url = #{coverUrl,jdbcType=VARCHAR},
+      media_type = #{mediaType,jdbcType=INTEGER},
+      media_url = #{mediaUrl,jdbcType=VARCHAR},
+      up = #{up,jdbcType=INTEGER},
+      down = #{down,jdbcType=INTEGER},
+      audit_status = #{auditStatus,jdbcType=BIT},
+      click_times = #{clickTimes,jdbcType=INTEGER},
+      comment_times = #{commentTimes,jdbcType=INTEGER},
+      ip = #{ip,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      gmt_create = #{gmtCreate,jdbcType=BIGINT},
+      modified_user_id = #{modifiedUserId,jdbcType=BIGINT},
+      gmt_modified = #{gmtModified,jdbcType=BIGINT},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      modified_user_name = #{modifiedUserName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="auditContent">
+    update content
+    set audit_status = #{auditStatus},
+     modified_user_id = #{modifiedUserId},
+     modified_user_name = #{modifiedUserName},
+     gmt_modified = #{gmtModified}
+    where id = #{contentId}
+  </update>
+  <update id="upContent">
+    update content
+    set up = #{newCount}
+    where id = #{contentId}
+    and up = #{oldCount}
+  </update>
+  <update id="downContent">
+    update content
+    set down = #{newCount}
+    where id = #{contentId}
+    and down = #{oldCount}
+  </update>
+  <update id="clickContent">
+    update content
+    set click_times = #{newCount}
+    where id = #{contentId}
+    and click_times = #{oldCount}
+  </update>
+  <update id="commentContent">
+    update content
+    set comment_times = #{newCount}
+    where id = #{contentId}
+    and comment_times = #{oldCount}
+  </update>
+</mapper>

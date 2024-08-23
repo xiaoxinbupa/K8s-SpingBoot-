@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tarena.tp.tea.server.dao.TagMapper">
+  <resultMap id="BaseResultMap" type="com.tarena.tp.tea.po.Tag">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="tag_type" jdbcType="INTEGER" property="tagType" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
+    <result column="modified_user_id" jdbcType="BIGINT" property="modifiedUserId" />
+    <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+    <result column="modified_user_name" jdbcType="VARCHAR" property="modifiedUserName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, tag_type, status, create_user_id, gmt_create, modified_user_id,
+    gmt_modified, create_user_name, modified_user_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tag
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="getTagInfoByTagType" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tag
+    where tag_type = #{tagType,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.tarena.tp.tea.po.Tag" useGeneratedKeys="true">
+    insert into tag (name, tag_type,
+      status, create_user_id, gmt_create,
+      modified_user_id, gmt_modified, create_user_name,
+      modified_user_name)
+    values (#{name,jdbcType=VARCHAR}, #{tagType,jdbcType=INTEGER},
+      #{status,jdbcType=TINYINT}, #{createUserId,jdbcType=BIGINT}, #{gmtCreate,jdbcType=BIGINT},
+      #{modifiedUserId,jdbcType=BIGINT}, #{gmtModified,jdbcType=BIGINT}, #{createUserName,jdbcType=VARCHAR},
+      #{modifiedUserName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.tarena.tp.tea.po.Tag" useGeneratedKeys="true">
+    insert into tag
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        name,
+      </if>
+      <if test="tagType != null">
+        tag_type,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="modifiedUserId != null">
+        modified_user_id,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="createUserName != null">
+        create_user_name,
+      </if>
+      <if test="modifiedUserName != null">
+        modified_user_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="tagType != null">
+        #{tagType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=BIGINT},
+      </if>
+      <if test="modifiedUserId != null">
+        #{modifiedUserId,jdbcType=BIGINT},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null">
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedUserName != null">
+        #{modifiedUserName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tarena.tp.tea.po.Tag">
+    update tag
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="tagType != null">
+        tag_type = #{tagType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=BIGINT},
+      </if>
+      <if test="modifiedUserId != null">
+        modified_user_id = #{modifiedUserId,jdbcType=BIGINT},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null">
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedUserName != null">
+        modified_user_name = #{modifiedUserName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tarena.tp.tea.po.Tag">
+    update tag
+    set name = #{name,jdbcType=VARCHAR},
+      tag_type = #{tagType,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      gmt_create = #{gmtCreate,jdbcType=BIGINT},
+      modified_user_id = #{modifiedUserId,jdbcType=BIGINT},
+      gmt_modified = #{gmtModified,jdbcType=BIGINT},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      modified_user_name = #{modifiedUserName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

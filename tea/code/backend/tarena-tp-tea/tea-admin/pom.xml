@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>tp-tea</artifactId>
+        <groupId>com.tarena.tp.tea</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>tea-admin</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0-SNAPSHOT</version>
+    <modules>
+        <module>tea-admin-main</module>
+        <module>tea-admin-adapter</module>
+        <module>tea-admin-dao-api</module>
+        <module>tea-admin-protocol</module>
+        <module>tea-admin-infrastructure</module>
+        <module>tea-admin-domain</module>
+        <module>tea-admin-dao-impl</module>
+    </modules>
+
+</project>

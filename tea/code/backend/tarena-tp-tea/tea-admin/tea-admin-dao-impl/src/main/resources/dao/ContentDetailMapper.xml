@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tarena.tp.tea.admin.dao.ContentDetailMapper">
+  <resultMap id="BaseResultMap" type="com.tarena.tp.tea.po.ContentDetail">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="content_id" jdbcType="INTEGER" property="contentId" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
+    <result column="modified_user_id" jdbcType="BIGINT" property="modifiedUserId" />
+    <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+    <result column="modified_user_name" jdbcType="VARCHAR" property="modifiedUserName" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.tarena.tp.tea.po.ContentDetail">
+    <result column="detail" jdbcType="LONGVARCHAR" property="detail" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, content_id, create_user_id, gmt_create, modified_user_id, gmt_modified, create_user_name, 
+    modified_user_name
+  </sql>
+  <sql id="Blob_Column_List">
+    detail
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from content_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByContentId" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from content_detail
+    where content_id = #{contentId,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.tarena.tp.tea.po.ContentDetail" useGeneratedKeys="true">
+    insert into content_detail (content_id, create_user_id, gmt_create, 
+      modified_user_id, gmt_modified, create_user_name, 
+      modified_user_name, detail)
+    values (#{contentId,jdbcType=INTEGER}, #{createUserId,jdbcType=BIGINT}, #{gmtCreate,jdbcType=BIGINT}, 
+      #{modifiedUserId,jdbcType=BIGINT}, #{gmtModified,jdbcType=BIGINT}, #{createUserName,jdbcType=VARCHAR}, 
+      #{modifiedUserName,jdbcType=VARCHAR}, #{detail,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.tarena.tp.tea.po.ContentDetail" useGeneratedKeys="true">
+    insert into content_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="contentId != null">
+        content_id,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="modifiedUserId != null">
+        modified_user_id,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="createUserName != null">
+        create_user_name,
+      </if>
+      <if test="modifiedUserName != null">
+        modified_user_name,
+      </if>
+      <if test="detail != null">
+        detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="contentId != null">
+        #{contentId,jdbcType=INTEGER},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=BIGINT},
+      </if>
+      <if test="modifiedUserId != null">
+        #{modifiedUserId,jdbcType=BIGINT},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null">
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedUserName != null">
+        #{modifiedUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        #{detail,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tarena.tp.tea.po.ContentDetail">
+    update content_detail
+    <set>
+      <if test="contentId != null">
+        content_id = #{contentId,jdbcType=INTEGER},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=BIGINT},
+      </if>
+      <if test="modifiedUserId != null">
+        modified_user_id = #{modifiedUserId,jdbcType=BIGINT},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null">
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedUserName != null">
+        modified_user_name = #{modifiedUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        detail = #{detail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByContentId" parameterType="com.tarena.tp.tea.po.ContentDetail">
+    update content_detail
+    <set>
+      <if test="modifiedUserId != null">
+        modified_user_id = #{modifiedUserId,jdbcType=BIGINT},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=BIGINT},
+      </if>
+      <if test="modifiedUserName != null">
+        modified_user_name = #{modifiedUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        detail = #{detail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where content_id = #{contentId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.tarena.tp.tea.po.ContentDetail">
+    update content_detail
+    set content_id = #{contentId,jdbcType=INTEGER},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      gmt_create = #{gmtCreate,jdbcType=BIGINT},
+      modified_user_id = #{modifiedUserId,jdbcType=BIGINT},
+      gmt_modified = #{gmtModified,jdbcType=BIGINT},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      modified_user_name = #{modifiedUserName,jdbcType=VARCHAR},
+      detail = #{detail,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tarena.tp.tea.po.ContentDetail">
+    update content_detail
+    set content_id = #{contentId,jdbcType=INTEGER},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      gmt_create = #{gmtCreate,jdbcType=BIGINT},
+      modified_user_id = #{modifiedUserId,jdbcType=BIGINT},
+      gmt_modified = #{gmtModified,jdbcType=BIGINT},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      modified_user_name = #{modifiedUserName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

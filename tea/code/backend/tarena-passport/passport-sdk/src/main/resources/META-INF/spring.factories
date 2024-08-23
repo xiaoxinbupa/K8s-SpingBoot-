@@ -1,0 +1,6 @@
+# Auto Configure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.tarena.passport.sdk.config.FastJsonAutoConfiguration,\
+com.tarena.passport.sdk.config.LoginUserArgumentsResolverAutoConfiguration,\
+com.tarena.passport.sdk.config.LoginUserFilterAutoConfiguration,\
+com.tarena.passport.sdk.config.SpringMVCArgumentsResolverAutoConfiguration

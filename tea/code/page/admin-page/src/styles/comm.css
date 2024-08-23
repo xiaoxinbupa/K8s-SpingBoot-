@@ -1,0 +1,141 @@
+.color-primary{
+    background-color: #26CEBA;
+}
+.bg-primary{
+    background-color: #26CEBA;
+    border:none;
+}
+.bg-primary:hover{
+    background-color: #27B9A7;
+}
+.bg-primary:focus{
+    background-color: #27B9A7;
+}
+
+div.title{
+    border-bottom:1px solid #EBEEF5;
+    padding-bottom: 10px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.input_title{
+    display: inline-block;
+    margin-right:10px;
+    font-size: 14px;
+    font-family: PingFang SC-常规体, PingFang SC;
+    font-weight: normal;
+    color: rgba(0,0,0,0.85);
+    line-height: 22px;
+}
+
+p{margin:0;padding:0;}
+
+.bg_white{
+    background-color: #fff;
+}
+.input_box .el-input__inner{
+    padding:0px 5px;
+    width: 210px !important;
+    height: 32px !important;
+}
+.input_box span{font-size: 14px;display:inline-block;margin-right:5px;}
+.input_box .el-button{
+  width:65px;height:32px;line-height: 32px;
+  padding:0px 20px;
+}
+/* 操作 */
+.text_router{
+    font-size: 14px;
+    font-family: PingFang SC-常规体, PingFang SC;
+    font-weight: normal;
+    color: #1890FF;
+    line-height: 22px;
+    cursor: pointer;
+  }
+/* 商品列表 */
+  .container_table{box-sizing: border-box; margin:10px;padding:0px 15px;}
+  .list-title{
+      font-size: 16px;
+      padding-top:10px;
+      margin-bottom: 10px;
+    }
+
+    /* 三级品类树 */
+    .tree_chuang>span{
+        border: 1px solid  grey;
+        padding: 10px;
+      }
+      .tree_chuang>span>input{
+        height: 25px;
+        box-sizing: border-box;
+      }
+      .tree_chuang>span>span{
+        display: inline-block;
+        box-sizing: border-box;
+        border: 1px solid grey;
+        line-height: 25px;
+      }
+      .rese,.sure{
+        width: 100px;
+        text-align: center;
+        line-height: 35px;
+        color: white;
+        border: 0;
+      }
+      .rese{
+        margin: 0 20px;
+        background-color: #0085D7;
+      }
+      .sure{
+        background-color: red;
+      }
+
+      .attr_tip{
+        margin-left:20px;
+        font-size: 14px;
+        font-family: PingFang SC-常规体, PingFang SC;
+        font-weight: normal;
+        color: #8C8C8C;
+        line-height: 22px;
+      }
+.container-input{
+ padding:10px 15px;background: #FFFFFF;opacity: 1;margin:10px;
+}
+
+/* form 上传图片 */
+.avatar-uploader .el-upload {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.avatar-uploader .el-upload:hover {
+  border-color: #4090FF;
+}
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 120px;
+  height: 120px;
+  line-height: 120px;
+  text-align: center;
+}
+.avatar {
+  width: 120px;
+  height: 120px;
+  display: block;
+}
+
+/* 对话框 */
+.el-dialog__header{
+  border-bottom:1px solid #ddd;
+}
+
+.front-category .el-dialog{
+  max-height: 650px;
+  overflow: scroll;
+}

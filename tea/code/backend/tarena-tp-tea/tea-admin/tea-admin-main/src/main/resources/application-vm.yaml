@@ -1,0 +1,102 @@
+spring:
+  # 数据源配置
+  datasource:
+    url: jdbc:mysql://192.168.1.12:3306/tarena_tp_tea?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&allowMultiQueries=true&allowPublicKeyRetrieval=true
+    username: teauser
+    password: Taren123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      minimum-idle: 1
+      auto-commit: true
+      idle-timeout: 600000
+      minimum: 5
+      max-lifetime: 1800000
+      #数据库连接超时时间,默认30秒，即30000
+      connection-timeout: 120000
+      connection-test-query: SELECT 1 FROM DUAL
+
+  redis:
+    host: 192.168.1.54
+    port: 6379
+    password: "Taren123"
+    database: 8
+    jedis:
+      pool:
+        max-active: 8
+        min-idle: 5
+        max-idle: 8
+        max-wait: PT15M
+        time-between-eviction-runs: PT15M
+
+#图片路径配置
+image_path: /home/images/vm/tea_attach/
+url: http://116.63.204.54:30080/tea_attach/
+
+
+rocketmq:
+  name-server: 192.168.1.14:9876
+  producer:
+    group: ${spring.application.name}
+
+mq:
+  topic:
+    order-cancel-topic: order-cancel-topic
+
+business-mq:
+  topic:
+    stock-rollback: 'order-cancel-topic'
+  group:
+    rollback-listener-group: 'stock-rollback-listener-group'
+
+
+jwt:
+  rsa:
+    enabled: true
+    private-key: |
+      -----BEGIN PRIVATE KEY-----
+      MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBANAn5giVT7oy/drc
+      o0evOFJUYSnHLbYtXG4MUuEUM2QdGX9d1q3y5k9orwX3wrt4WP4gIkQdB0EzQApp
+      WZMUbbVsibVWkVSTQ5aInPgjLjfaDlcP5U4Z1hh3QiPZ01i3AWYY8HS+2SBIlRLH
+      S5X0MjZkdbOVEPODU73JNSjFKz4XAgMBAAECgYBwXblt1LxPNYuYBBcYcVwkBWzW
+      ErF4cJA+z+RFoJQFbTgAa3WiPUdagpZI0HCMpvDTbiFRR6JM7g+aDzjNju+RUCW9
+      0iaDrB5vKyh3INMzcdCfm4btGectxb/ZCYFkXPBvqtqzK/H9ANk/Xlq1KFw0O2x2
+      fgV7swYuiZ3kSYLbEQJBAPx2gXPkpraqEPmt//ce7AP5fHxC8Td2JFROsRfyweJP
+      0dUdiLDgMxwpFZIhidU1sJBWX62Vqv6Jh/MvoMBhttsCQQDTEnqy9P+VAS1huYkl
+      XwWjbZKxHEIaxW+Bg/ombXLhGudpy+chHFy4QEgA1Puda7kxgcTMhRj1i1EliytB
+      ecR1AkEA9STJPNS4wURQKXG4y6f9+zoFk8+Y1IbmberfcWaqt2tUUEFWWpHJbz3B
+      kVz5rstsgCsuyqo7GOBI323PBR+c4wJBAJxA3dyFSn+AM5xYwZKM2Zu2jhXXGYjA
+      CGAU16aC97x1MkM704rLeEheLe+PvAU5rgtcSdgt3+BGlnf4orkB79ECQE2uNOTP
+      enyfRVLgN0j3ZLSyOSqw+kqGsoU2jpcxFCGy0RGk3z1fHVccHfspqCA7AMj9jK5O
+      3EULSLOmkXQHPLQ=
+      -----END PRIVATE KEY-----
+    expiration: 1000000
+    public-key: |
+      -----BEGIN PUBLIC KEY-----
+      MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDQJ+YIlU+6Mv3a3KNHrzhSVGEp
+      xy22LVxuDFLhFDNkHRl/Xdat8uZPaK8F98K7eFj+ICJEHQdBM0AKaVmTFG21bIm1
+      VpFUk0OWiJz4Iy432g5XD+VOGdYYd0Ij2dNYtwFmGPB0vtkgSJUSx0uV9DI2ZHWz
+      lRDzg1O9yTUoxSs+FwIDAQAB
+      -----END PUBLIC KEY-----
+
+gateway:
+  whitelists:
+    - /doc.html
+    - /register/**
+    - /**/*.html"
+    - /*.html"
+    - /favicon.ico
+    - /**/*.html
+    - /**/*.css
+    - /**/*.js
+    - /swagger-resources/**
+    - /v2/api-docs/**
+    - /sso/valid/code
+    - /*.js
+    - /**.html
+    - /user/login
+    - /menu/**/**
+    - /content/**/**
+    - /*.jpg
+    - /*.jpeg
+    - /*.png
+    - /images/**

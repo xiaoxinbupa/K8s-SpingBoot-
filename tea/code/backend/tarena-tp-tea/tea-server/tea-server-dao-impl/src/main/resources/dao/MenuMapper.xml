@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tarena.tp.tea.server.dao.MenuMapper">
+  <resultMap id="BaseResultMap" type="com.tarena.tp.tea.po.Menu">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="category_id" jdbcType="INTEGER" property="categoryId" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="audit_status" jdbcType="BIT" property="auditStatus" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
+    <result column="modified_user_id" jdbcType="BIGINT" property="modifiedUserId" />
+    <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+    <result column="modified_user_name" jdbcType="VARCHAR" property="modifiedUserName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, title, category_id, type,sort, icon, url, audit_status, status, create_user_id, gmt_create, modified_user_id,
+    gmt_modified, create_user_name, modified_user_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from menu
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="queryMenuList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from menu
+    where status = 1
+    order by sort asc
+  </select>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.tarena.tp.tea.po.Menu" useGeneratedKeys="true">
+    insert into menu (title, sort, icon,category_id,type,
+      url, audit_status, status, 
+      create_user_id, gmt_create, modified_user_id, 
+      gmt_modified, create_user_name, modified_user_name
+      )
+    values (#{title,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, #{icon,jdbcType=VARCHAR}, #{categoryId,jdbcType=INTEGER}, #{type,jdbcType=TINYINT},
+      #{url,jdbcType=VARCHAR}, #{auditStatus,jdbcType=BIT}, #{status,jdbcType=TINYINT}, 
+      #{createUserId,jdbcType=BIGINT}, #{gmtCreate,jdbcType=BIGINT}, #{modifiedUserId,jdbcType=BIGINT}, 
+      #{gmtModified,jdbcType=BIGINT}, #{createUserName,jdbcType=VARCHAR}, #{modifiedUserName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tarena.tp.tea.po.Menu">
+    update menu
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null">
+        category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null">
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="auditStatus != null">
+        audit_status = #{auditStatus,jdbcType=BIT},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=BIGINT},
+      </if>
+      <if test="modifiedUserId != null">
+        modified_user_id = #{modifiedUserId,jdbcType=BIGINT},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null">
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedUserName != null">
+        modified_user_name = #{modifiedUserName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tarena.tp.tea.po.Menu">
+    update menu
+    set title = #{title,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      icon = #{icon,jdbcType=VARCHAR},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      type = #{type,jdbcType=TINYINT},
+      url = #{url,jdbcType=VARCHAR},
+      audit_status = #{auditStatus,jdbcType=BIT},
+      status = #{status,jdbcType=TINYINT},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      gmt_create = #{gmtCreate,jdbcType=BIGINT},
+      modified_user_id = #{modifiedUserId,jdbcType=BIGINT},
+      gmt_modified = #{gmtModified,jdbcType=BIGINT},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      modified_user_name = #{modifiedUserName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

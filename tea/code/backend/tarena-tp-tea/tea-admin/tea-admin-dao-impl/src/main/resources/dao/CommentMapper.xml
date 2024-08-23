@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tarena.tp.tea.admin.dao.CommentMapper">
+  <resultMap id="BaseResultMap" type="com.tarena.tp.tea.po.Comment">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="content_id" jdbcType="INTEGER" property="contentId" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="up" jdbcType="INTEGER" property="up" />
+    <result column="down" jdbcType="INTEGER" property="down" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="audit_status" jdbcType="TINYINT" property="auditStatus" />
+    <result column="floor" jdbcType="INTEGER" property="floor" />
+    <result column="reference_ids" jdbcType="INTEGER" property="referenceIds" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
+    <result column="modified_user_id" jdbcType="BIGINT" property="modifiedUserId" />
+    <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+    <result column="modified_user_name" jdbcType="VARCHAR" property="modifiedUserName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, content_id, content, up, down, ip, audit_status, floor, reference_ids, status, 
+    create_user_id, gmt_create, modified_user_id, gmt_modified, create_user_name, modified_user_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from comment
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.tarena.tp.tea.po.Comment" useGeneratedKeys="true">
+    insert into comment (content_id, content, up, 
+      down, ip, audit_status, 
+      floor, reference_ids, status, 
+      create_user_id, gmt_create, modified_user_id, 
+      gmt_modified, create_user_name, modified_user_name
+      )
+    values (#{contentId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{up,jdbcType=INTEGER}, 
+      #{down,jdbcType=INTEGER}, #{ip,jdbcType=VARCHAR}, #{auditStatus,jdbcType=TINYINT}, 
+      #{floor,jdbcType=INTEGER}, #{referenceIds,jdbcType=INTEGER}, #{status,jdbcType=TINYINT},
+      #{createUserId,jdbcType=BIGINT}, #{gmtCreate,jdbcType=BIGINT}, #{modifiedUserId,jdbcType=BIGINT}, 
+      #{gmtModified,jdbcType=BIGINT}, #{createUserName,jdbcType=VARCHAR}, #{modifiedUserName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.tarena.tp.tea.po.Comment" useGeneratedKeys="true">
+    insert into comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="contentId != null">
+        content_id,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="up != null">
+        up,
+      </if>
+      <if test="down != null">
+        down,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="auditStatus != null">
+        audit_status,
+      </if>
+      <if test="floor != null">
+        floor,
+      </if>
+      <if test="referenceIds != null">
+        reference_ids,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="modifiedUserId != null">
+        modified_user_id,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="createUserName != null">
+        create_user_name,
+      </if>
+      <if test="modifiedUserName != null">
+        modified_user_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="contentId != null">
+        #{contentId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="up != null">
+        #{up,jdbcType=INTEGER},
+      </if>
+      <if test="down != null">
+        #{down,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="auditStatus != null">
+        #{auditStatus,jdbcType=TINYINT},
+      </if>
+      <if test="floor != null">
+        #{floor,jdbcType=INTEGER},
+      </if>
+      <if test="referenceIds != null">
+        #{referenceIds,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=BIGINT},
+      </if>
+      <if test="modifiedUserId != null">
+        #{modifiedUserId,jdbcType=BIGINT},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null">
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedUserName != null">
+        #{modifiedUserName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tarena.tp.tea.po.Comment">
+    update comment
+    <set>
+      <if test="contentId != null">
+        content_id = #{contentId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="up != null">
+        up = #{up,jdbcType=INTEGER},
+      </if>
+      <if test="down != null">
+        down = #{down,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="auditStatus != null">
+        audit_status = #{auditStatus,jdbcType=TINYINT},
+      </if>
+      <if test="floor != null">
+        floor = #{floor,jdbcType=INTEGER},
+      </if>
+      <if test="referenceIds != null">
+        reference_ids = #{referenceIds,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=BIGINT},
+      </if>
+      <if test="modifiedUserId != null">
+        modified_user_id = #{modifiedUserId,jdbcType=BIGINT},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null">
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedUserName != null">
+        modified_user_name = #{modifiedUserName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tarena.tp.tea.po.Comment">
+    update comment
+    set content_id = #{contentId,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      up = #{up,jdbcType=INTEGER},
+      down = #{down,jdbcType=INTEGER},
+      ip = #{ip,jdbcType=VARCHAR},
+      audit_status = #{auditStatus,jdbcType=TINYINT},
+      floor = #{floor,jdbcType=INTEGER},
+      reference_ids = #{referenceIds,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      gmt_create = #{gmtCreate,jdbcType=BIGINT},
+      modified_user_id = #{modifiedUserId,jdbcType=BIGINT},
+      gmt_modified = #{gmtModified,jdbcType=BIGINT},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      modified_user_name = #{modifiedUserName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

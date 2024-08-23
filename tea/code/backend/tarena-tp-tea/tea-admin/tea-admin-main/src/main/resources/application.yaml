@@ -1,0 +1,29 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: tea-admin-main
+
+server:
+  port: 8081
+
+#mybatis相关
+mybatis-plus:
+  mapper-locations: classpath*:/**/dao/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+logging:
+  config: classpath:logback-spring.xml
+
+json:
+  provider: fastJson
+
+app:
+  business:
+    type: 66
+
+login:
+  mock: true
+
